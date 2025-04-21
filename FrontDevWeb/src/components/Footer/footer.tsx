@@ -1,17 +1,10 @@
 import React from "react";
+import styles from "./footer.module.css"; // Importando o CSS do Footer
 
 const Footer: React.FC = () => {
   return (
     <footer
-      style={{
-        backgroundColor: "#343a40",
-        color: "#fff",
-        padding: "10px",
-        textAlign: "center",
-        position: "fixed",
-        bottom: "0",
-        width: "100%",
-      }}
+      className={styles.footer}
     >
       <p>© 2025 Marketplace, All rights reserved.</p>
     </footer>
