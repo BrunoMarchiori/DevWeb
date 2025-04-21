@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+  margin: 0 20px 0 20px;
+}
+.formDiv {
+  width: 60%;
+}
+.form {
+  display: flex;
+  flex-grow: 1;
+}
+.buttonDiv {
+  display: flex;
+  justify-content: end;
+}
