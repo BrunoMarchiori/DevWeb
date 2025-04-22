@@ -1,7 +1,6 @@
-import React from "react";
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
-import ProductCard from "../../components/ProductCard/product-card";
+import CustomSlider from "../../components/Slider/slider";
 
 const HomePage: React.FC = () => {
   return (
@@ -14,14 +13,16 @@ const HomePage: React.FC = () => {
       }}
     >
       <Header />
-      <main style={{ flex: "1", padding: "10px" }}>
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-        </div>
+      <div></div>
+      <main style={{ flex: "1", padding: "0 50px" }}>
+        <span>Eletronicos</span>
+        <CustomSlider items={10} />
+        <span>Eletronicos</span>
+        <CustomSlider items={10} />
+        <span>Eletronicos</span>
+        <CustomSlider items={10} />
+        <span>Eletronicos</span>
+        <CustomSlider items={10} />
       </main>
       <Footer />
     </div>
