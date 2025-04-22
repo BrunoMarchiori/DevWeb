@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/react.svg"; // Importando a imagem do logo
+import logo from "../../assets/bazaar.png"; // Importando a imagem do logo
 import styles from "./header.module.css";
 
 const Header: React.FC = () => {
