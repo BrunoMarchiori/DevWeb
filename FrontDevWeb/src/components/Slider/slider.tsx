@@ -41,7 +41,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({ items }) => {
     <Slider {...settings}>
       {[...Array(items)].map((_, index) => (
         <div key={index} style={{ padding: "0 10px" }}>
-          <ProductCard />
+          <ProductCard id={index.toString()} category="Eletronics" imageUrl="https://cdn.awsli.com.br/2500x2500/1113/1113512/produto/110434143/0fd759954d.jpg" price={50} key={index}/>
         </div>
       ))}
     </Slider>
