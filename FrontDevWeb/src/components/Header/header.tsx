@@ -1,8 +1,16 @@
 import React from "react";
 import logo from "../../assets/bazaar.png"; // Importando a imagem do logo
 import styles from "./header.module.css";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/login`); 
+  };
+
   return (
     <header className="bg-primary text-white">
       <div className={styles.header}>
@@ -30,7 +38,8 @@ const Header: React.FC = () => {
           <button className="btn btn-light me-2">
             <i className="bi bi-cart-check"></i> Cart
           </button>
-          <button className="btn btn-outline-light">Login</button>
+          <button className="btn btn-outline-light" onClick={handleClick}>Login</button>
+          
         </div>
       </div>
     </header>
