@@ -2,27 +2,28 @@ import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
 import CustomSlider from "../../components/Slider/slider";
 import ProductCard from "../../components/ProductCard/product-card";
+import { useParams } from "react-router-dom";
+import styles from "./product-detail.module.css"; // Importando o CSS do ProductDetails
 
 const ProductDetails: React.FC = () => {
+  
+  var { id }  = useParams();
+  
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        backgroundColor: "#989898",
-      }}
-    >
-      <Header />
-      <div></div>
-      <main style={{ flex: "1", padding: "0 50px" }}>
-        <ProductCard />
-      </main>
-      <span>Produtos Relacionados</span>
-      <CustomSlider items={10} />
-      <Footer />
+    <div className={styles.mainDiv}>
+      <div className={styles.productDetails}>
+        <ProductCard id={id ?? '1'} category="Eletronics" imageUrl="https://cdn.awsli.com.br/2500x2500/1113/1113512/produto/110434143/0fd759954d.jpg" price={50} key={id ?? '1'}/>
+      </div>
+      
+      <div className={styles.sliderDiv}>
+        <span>Produtos Relacionados</span>
+        <CustomSlider items={10} />
+      </div>
     </div>
   );
 };
 
 export default ProductDetails;
+
+
+
