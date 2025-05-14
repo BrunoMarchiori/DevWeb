@@ -1,0 +1,14 @@
+.carrinho_div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 10%;
+    left: 22%;
+    height: fit-content;
+    background-color: white;
+    width: 50vw;
+    padding: 20px;
+    
+}

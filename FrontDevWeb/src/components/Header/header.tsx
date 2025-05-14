@@ -7,7 +7,7 @@ const Header: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClickLogin = () => {
     navigate(`/login`); 
   };
 
@@ -35,10 +35,10 @@ const Header: React.FC = () => {
         </div>
 
         <div className={styles.buttonDiv}>
-          <button className="btn btn-light me-2">
+          <button className="btn btn-light me-2" onClick={() => navigate(`/carrinho`)}>
             <i className="bi bi-cart-check"></i> Cart
           </button>
-          <button className="btn btn-outline-light" onClick={handleClick}>Login</button>
+          <button className="btn btn-outline-light" onClick={handleClickLogin}>Login</button>
           
         </div>
       </div>
