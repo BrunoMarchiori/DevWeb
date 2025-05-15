@@ -1,14 +1,13 @@
 import React from "react";
 import logo from "../../assets/bazaar.png"; // Importando a imagem do logo
 import styles from "./header.module.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
-
   const navigate = useNavigate();
 
   const handleClickLogin = () => {
-    navigate(`/login`); 
+    navigate(`/login`);
   };
 
   return (
@@ -35,11 +34,15 @@ const Header: React.FC = () => {
         </div>
 
         <div className={styles.buttonDiv}>
-          <button className="btn btn-light me-2" onClick={() => navigate(`/carrinho`)}>
+          <button
+            className="btn btn-light me-2"
+            onClick={() => navigate(`/carrinho`)}
+          >
             <i className="bi bi-cart-check"></i> Cart
           </button>
-          <button className="btn btn-outline-light" onClick={handleClickLogin}>Login</button>
-          
+          <button className="btn btn-outline-light" onClick={handleClickLogin}>
+            Login
+          </button>
         </div>
       </div>
     </header>
