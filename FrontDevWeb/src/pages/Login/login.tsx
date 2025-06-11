@@ -9,15 +9,20 @@ export default function Login() {
                     <div className={styles.loginContainer}>
                         <h1>Login</h1>
                         <form>
-                            <div className={styles.input}>
-                                <label htmlFor="email">Email:</label>
-                                <input type="email" id="email" name="email" required />
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1">Email</label>
+                                <br></br>
+                                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail"></input>
+                                
                             </div>
-                            <div className={styles.input}>
-                                <label htmlFor="password">Password:</label>
-                                <input type="password" id="password" name="password" required />
+                            <br></br>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputPassword1">Senha</label>
+                                <br></br>
+                                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Senha"></input>
                             </div>
-                            <button type="submit">Login</button>
+                            <br></br>
+                            <button type="submit" className="btn btn-primary">Entrar</button>
                         </form>
                     </div>
                 

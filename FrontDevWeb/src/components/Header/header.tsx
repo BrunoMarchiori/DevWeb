@@ -25,18 +25,18 @@ const Header: React.FC = () => {
             <input
               className="form-control me-2"
               type="search"
-              placeholder="Search products"
+              placeholder="Pesquisar produtos"
               aria-label="Search"
             />
             <button className="btn btn-outline-light" type="submit">
-              Search
+              Pesquisar
             </button>
           </form>
         </div>
 
         <div className={styles.buttonDiv}>
           <button className="btn btn-light me-2" onClick={() => navigate(`/carrinho`)}>
-            <i className="bi bi-cart-check"></i> Cart
+            <i className="bi bi-cart-check"></i> Carrinho
           </button>
           <button className="btn btn-outline-light" onClick={handleClickLogin}>Login</button>
           

@@ -20,7 +20,7 @@ export default function Carrinho() {
                 <ProductCard id={'1'} category="Eletronics" imageUrl="https://cdn.awsli.com.br/2500x2500/1113/1113512/produto/110434143/0fd759954d.jpg" price={50} />
             </div>
         </div>
-        <button>Finalizar Compra</button>
+        <button type="button" className="btn btn-primary">Finalizar compra</button>
     </div>
   );
 }
