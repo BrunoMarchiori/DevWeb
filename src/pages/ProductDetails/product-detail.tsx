@@ -1,5 +1,3 @@
-import Header from "../../components/Header/header";
-import Footer from "../../components/Footer/footer";
 import CustomSlider from "../../components/Slider/slider";
 import ProductCard from "../../components/ProductCard/product-card";
 import { useParams } from "react-router-dom";
