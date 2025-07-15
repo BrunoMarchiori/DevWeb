@@ -1,4 +1,4 @@
-package main.java.com.bazaar.controller;
+package com.bazaar.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
