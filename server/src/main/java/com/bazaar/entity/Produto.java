@@ -13,6 +13,9 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -68,6 +71,10 @@ public class Produto {
     @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private Interacao interacao;
+
+    @ManyToMany(mappedBy = "favoriteProducts")
+    private Set<Usuario> favoritedByUsers = new HashSet<>();
+
 
     public Produto(String imagem, String nome, String slug, String descricao,
                    boolean disponivel, Integer qtdEstoque, BigDecimal preco,

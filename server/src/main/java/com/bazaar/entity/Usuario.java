@@ -1,14 +1,14 @@
 package com.bazaar.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,6 +32,15 @@ public class Usuario {
     private String email;
 
     private String senha;
+
+    @ManyToMany
+    @JoinTable(
+            name = "favorites",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Produto> favoriteProducts = new HashSet<>();
+
 
     public Usuario(String nome, String endereco, long telefone, String email, String senha) {
         this.nome = nome;
