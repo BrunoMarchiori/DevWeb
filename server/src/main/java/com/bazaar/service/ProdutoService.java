@@ -19,7 +19,14 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     public List<Produto> recuperarProdutos() {
-        return produtoRepository.recuperarProdutosComCategoria();
+
+        List<Produto> produtos = produtoRepository.recuperarProdutosComCategoria();
+
+        if (produtos.isEmpty()) {
+            throw new EntidadeNaoEncontradaException("Não existem produtos cadastrados");
+        }
+
+        return produtos;
     }
 
     public Produto cadastrarProduto(Produto produto) {
