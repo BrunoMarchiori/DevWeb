@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("http://localhost:5432")
 @RestController
 @RequestMapping("autenticacao")   // http://localhost:8080/autenticacao
 public class AutenticacaoController {
@@ -26,6 +26,12 @@ public class AutenticacaoController {
         } else {
             return new TokenResponse(0);
         }
+    }
+
+    // Requisição do tipo GET para http://localhost:8080/autenticacao/id
+    @GetMapping("{idUsuario}")
+    public Usuario recuperarUsuarioPorId(@PathVariable("idUsuario") long id) {
+        return autenticacaoService.recuperarUsuarioPorId(id);
     }
 
     // Requisição do tipo POST para http://localhost:8080/autenticacao/cadastro
