@@ -2,7 +2,9 @@ package com.bazaar.service;
 
 
 
+import com.bazaar.entity.Produto;
 import com.bazaar.entity.Usuario;
+import com.bazaar.exception.EntidadeNaoEncontradaException;
 import com.bazaar.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +17,25 @@ public class AutenticacaoService {
 
     public Usuario login(Usuario usuario) {
         // System.out.println("Conta = " + usuario.getConta() + " e senha = " + usuario.getSenha());
-        return usuarioRepository.findByEmailAndSenha(
+        Usuario user =  usuarioRepository.findByEmailAndSenha(
                 usuario.getEmail(), usuario.getSenha());
+
+        if (user == null){
+            throw  new EntidadeNaoEncontradaException("Usuario não encontrado");
+        }
+
+        return user;
     }
 
     public Usuario cadastroUsuario(Usuario usuario){
 
         return usuarioRepository.save(usuario);
+    }
+
+
+    public Usuario recuperarUsuarioPorId(long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new EntidadeNaoEncontradaException(
+                        "Usuario número " + id + " não encontrado."));
     }
 }

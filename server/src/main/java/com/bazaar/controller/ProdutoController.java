@@ -1,23 +1,30 @@
 package com.bazaar.controller;
 
+import com.bazaar.DTO.FavoritoDTO;
 import com.bazaar.entity.Interacao;
 import com.bazaar.entity.Produto;
 import com.bazaar.entity.ResultadoPaginado;
+import com.bazaar.service.FavoritoService;
 import com.bazaar.service.InteracaoService;
 import com.bazaar.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("http://localhost:5432")
 @RestController
 @RequestMapping("produtos")  // http://localhost:8080/produtos
 public class ProdutoController {
+
+    @Autowired
+    private FavoritoService favoriteService;
 
     @Autowired
     private ProdutoService produtoService;
@@ -93,5 +100,32 @@ public class ProdutoController {
                 page.getContent());
         return resultadoPaginado;
     }
+
+    // Adicionar produto aos favoritados
+    @PostMapping("/{idProduto}/favoritar/{idUsuario}")
+    public ResponseEntity<String> favoritarProduto(
+            @PathVariable Long idProduto,
+            @PathVariable Long idUsuario) {
+        favoriteService.addFavorite(idUsuario, idProduto);
+        return ResponseEntity.ok("Produto favoritado com sucesso!");
+    }
+
+    // Remover produto dos favoritos
+    @DeleteMapping("/{idProduto}/desfavoritar/{idUsuario}")
+    public ResponseEntity<String> desfavoritarProduto(
+            @PathVariable Long idProduto,
+            @PathVariable Long idUsuario) {
+        favoriteService.removeFavorite(idUsuario, idProduto);
+        return ResponseEntity.ok("Produto removido dos favoritos.");
+    }
+
+    // Listar favoritos de um usuário
+    @GetMapping("/favoritos/{idUsuario}")
+    public ResponseEntity<Set<FavoritoDTO>> listarFavoritos(@PathVariable Long idUsuario) {
+        Set<FavoritoDTO> favoritos = favoriteService.getFavorites(idUsuario);
+        return ResponseEntity.ok(favoritos);
+    }
+
+
 
 }

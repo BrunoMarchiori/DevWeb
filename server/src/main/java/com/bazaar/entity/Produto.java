@@ -1,6 +1,9 @@
 package com.bazaar.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -13,11 +16,17 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Produto {
 
     @Id
@@ -68,6 +77,10 @@ public class Produto {
     @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private Interacao interacao;
+
+    @ManyToMany(mappedBy = "favoriteProducts")
+    private Set<Usuario> favoritedByUsers = new HashSet<>();
+
 
     public Produto(String imagem, String nome, String slug, String descricao,
                    boolean disponivel, Integer qtdEstoque, BigDecimal preco,
