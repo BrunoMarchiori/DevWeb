@@ -1,5 +1,6 @@
 package com.bazaar.controller;
 
+import com.bazaar.DTO.FavoritoDTO;
 import com.bazaar.entity.Interacao;
 import com.bazaar.entity.Produto;
 import com.bazaar.entity.ResultadoPaginado;
@@ -103,25 +104,25 @@ public class ProdutoController {
     // Adicionar produto aos favoritados
     @PostMapping("/{idProduto}/favoritar/{idUsuario}")
     public ResponseEntity<String> favoritarProduto(
-            @PathVariable Long produtoId,
-            @PathVariable Long usuarioId) {
-        favoriteService.addFavorite(usuarioId, produtoId);
+            @PathVariable Long idProduto,
+            @PathVariable Long idUsuario) {
+        favoriteService.addFavorite(idUsuario, idProduto);
         return ResponseEntity.ok("Produto favoritado com sucesso!");
     }
 
     // Remover produto dos favoritos
     @DeleteMapping("/{idProduto}/desfavoritar/{idUsuario}")
     public ResponseEntity<String> desfavoritarProduto(
-            @PathVariable Long produtoId,
-            @PathVariable Long usuarioId) {
-        favoriteService.removeFavorite(usuarioId, produtoId);
+            @PathVariable Long idProduto,
+            @PathVariable Long idUsuario) {
+        favoriteService.removeFavorite(idUsuario, idProduto);
         return ResponseEntity.ok("Produto removido dos favoritos.");
     }
 
     // Listar favoritos de um usuário
     @GetMapping("/favoritos/{idUsuario}")
-    public ResponseEntity<Set<Produto>> listarFavoritos(@PathVariable Long usuarioId) {
-        Set<Produto> favoritos = favoriteService.getFavorites(usuarioId);
+    public ResponseEntity<Set<FavoritoDTO>> listarFavoritos(@PathVariable Long idUsuario) {
+        Set<FavoritoDTO> favoritos = favoriteService.getFavorites(idUsuario);
         return ResponseEntity.ok(favoritos);
     }
 
