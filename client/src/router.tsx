@@ -4,6 +4,7 @@ import MainLayout from "./Layouts/MainLayout/mainLayout";
 import ProductDetail from "./pages/ProductDetails/product-detail";
 import Login from "./pages/Login/login";
 import Carrinho from "./pages/Carrinho/carrinho";
+import Cadastro from "./pages/Cadastro/cadastro";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/cadastro',
+                element: <Cadastro></Cadastro>
             },
             {
                 path: '/carrinho',

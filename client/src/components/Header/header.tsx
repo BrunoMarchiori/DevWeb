@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../assets/bazaar.png"; // Importando a imagem do logo
 import styles from "./header.module.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
 

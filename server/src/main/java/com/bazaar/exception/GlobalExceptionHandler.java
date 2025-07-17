@@ -69,4 +69,34 @@ public class GlobalExceptionHandler {
                 e.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.UNPROCESSABLE_ENTITY);
     }
+
+    @ExceptionHandler(EmailJaExisteException.class)
+    public ResponseEntity<ErrorResponse> handleEmailJaExisteException(
+            EmailJaExisteException e, HttpServletRequest request) {
+        
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.name(),
+                request.getMethod(),
+                request.getRequestURI(),
+                null,
+                e.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(SenhasNaoCoincidentesException.class)
+    public ResponseEntity<ErrorResponse> handleSenhasNaoCoincidentesException(
+            SenhasNaoCoincidentesException e, HttpServletRequest request) {
+        
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.name(),
+                request.getMethod(),
+                request.getRequestURI(),
+                null,
+                e.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
 }
