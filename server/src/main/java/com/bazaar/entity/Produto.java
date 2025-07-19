@@ -36,6 +36,10 @@ public class Produto {
     @NotEmpty(message = "A 'Imagem' deve ser informada.")
     private String imagem;
 
+    @Lob
+    @Column(name = "imagem_blob")
+    private byte[] imagemBlob;
+
     @NotEmpty(message = "O 'Nome' deve ser informado.")
     private String nome;
 
@@ -80,6 +84,14 @@ public class Produto {
 
     @ManyToMany(mappedBy = "favoriteProducts")
     private Set<Usuario> favoritedByUsers = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "produto_categoria",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private Set<Categoria> categorias = new HashSet<>();
 
 
     public Produto(String imagem, String nome, String slug, String descricao,

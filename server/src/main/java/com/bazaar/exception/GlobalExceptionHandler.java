@@ -99,4 +99,49 @@ public class GlobalExceptionHandler {
                 e.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ProdutoIndisponivelException.class)
+    public ResponseEntity<ErrorResponse> handleProdutoIndisponivelException(
+            ProdutoIndisponivelException e, HttpServletRequest request) {
+        
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.name(),
+                request.getMethod(),
+                request.getRequestURI(),
+                null,
+                e.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EstoqueInsuficienteException.class)
+    public ResponseEntity<ErrorResponse> handleEstoqueInsuficienteException(
+            EstoqueInsuficienteException e, HttpServletRequest request) {
+        
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.name(),
+                request.getMethod(),
+                request.getRequestURI(),
+                null,
+                e.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CarrinhoVazioException.class)
+    public ResponseEntity<ErrorResponse> handleCarrinhoVazioException(
+            CarrinhoVazioException e, HttpServletRequest request) {
+        
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.name(),
+                request.getMethod(),
+                request.getRequestURI(),
+                null,
+                e.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
 }

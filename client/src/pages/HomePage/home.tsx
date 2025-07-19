@@ -1,20 +1,61 @@
+import { useEffect, useState } from "react";
 import CustomSlider from "../../components/Slider/slider";
-import styles from "./home.module.css"; // Importando o CSS do HomePage
+import styles from "./home.module.css";
+
+interface Produto {
+  id: number;
+  nome: string;
+  preco: number;
+  imagem: string;
+  categoria: string;
+}
+
+interface Categoria {
+  id: number;
+  nome: string;
+  produtos: Produto[];
+}
 
 const HomePage: React.FC = () => {
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCategorias = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/categorias');
+        const data: Categoria[] = await response.json();
+        setCategorias(data);
+      } catch (error) {
+        console.error('Erro ao buscar categorias:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategorias();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className={styles.mainDiv}>
+        <h1>Trabalho de Luiz Felipe Alves e Bruno Marchiori</h1>
+        <div>Carregando categorias...</div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.mainDiv}>
       <h1>Trabalho de Luiz Felipe Alves e Bruno Marchiori</h1>
       <div className={styles.sliderDiv}>
-          <span>Eletronicos</span>
-          <CustomSlider items={10} />
-          <span>Eletronicos</span>
-          <CustomSlider items={10} />
-          <span>Eletronicos</span>
-          <CustomSlider items={10} />
-          <span>Eletronicos</span>
-          <CustomSlider items={10} />
-        </div>
+        {categorias.map((categoria) => (
+          <div key={categoria.id} className={styles.categorySection}>
+            <span className={styles.categoryTitle}>{categoria.nome}</span>
+            <CustomSlider produtos={categoria.produtos} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -9,3 +9,16 @@
     flex: 1;
     padding: 0 50px;
 }
+
+.categorySection {
+    margin-bottom: 40px;
+}
+
+.categoryTitle {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    padding-left: 10px;
+}

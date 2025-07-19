@@ -18,6 +18,8 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select p from Produto p where p.id = :id")
     Optional<Produto> recuperarProdutoPorIdComLock(@Param("id") Long id);
+    
+    Optional<Produto> findByImagem(String imagem);
 
     @Query("select p from Produto p order by p.id")
     List<Produto> recuperarProdutosComCategoria();
@@ -33,6 +35,13 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
             countQuery = "select count(p) from Produto p where p.nome like :nome"
     )
     Page<Produto> recuperarProdutosComPaginacao(Pageable pageable, @Param("nome") String nome);
+
+    @Query("SELECT p.id, p.nome, p.preco, p.imagem FROM Produto p " +
+           "JOIN p.categorias c " +
+           "LEFT JOIN Interacao i ON p.id = i.produto.id " +
+           "WHERE c.id = :categoriaId " +
+           "ORDER BY COALESCE(i.visualizacoes, 0) DESC")
+    List<Object[]> findProdutosPorCategoriaOrderByInteracao(@Param("categoriaId") Long categoriaId, Pageable pageable);
 
     /*@Query("select p from Produto p " +
             "left outer join fetch p.categoria c " +
