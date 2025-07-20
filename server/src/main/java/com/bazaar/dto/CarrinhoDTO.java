@@ -1,4 +1,4 @@
-package com.bazaar.dto;
+package com.bazaar.DTO;
 
 import com.bazaar.entity.Carrinho;
 import lombok.Getter;

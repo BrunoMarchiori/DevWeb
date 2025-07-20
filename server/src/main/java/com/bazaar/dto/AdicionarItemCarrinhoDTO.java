@@ -1,4 +1,4 @@
-package com.bazaar.dto;
+package com.bazaar.DTO;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

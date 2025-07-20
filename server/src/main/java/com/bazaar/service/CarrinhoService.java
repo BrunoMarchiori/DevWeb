@@ -1,7 +1,7 @@
 package com.bazaar.service;
 
-import com.bazaar.dto.AdicionarItemCarrinhoDTO;
-import com.bazaar.dto.CarrinhoDTO;
+import com.bazaar.DTO.AdicionarItemCarrinhoDTO;
+import com.bazaar.DTO.CarrinhoDTO;
 import com.bazaar.entity.Carrinho;
 import com.bazaar.entity.ItemCarrinho;
 import com.bazaar.entity.Produto;

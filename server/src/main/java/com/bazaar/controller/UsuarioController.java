@@ -1,7 +1,7 @@
 package com.bazaar.controller;
 
-import com.bazaar.dto.UsuarioRegistroDTO;
-import com.bazaar.dto.UsuarioResponseDTO;
+import com.bazaar.DTO.UsuarioRegistroDTO;
+import com.bazaar.DTO.UsuarioResponseDTO;
 import com.bazaar.exception.EmailJaExisteException;
 import com.bazaar.exception.SenhasNaoCoincidentesException;
 import com.bazaar.service.UsuarioService;
