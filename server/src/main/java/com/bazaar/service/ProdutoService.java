@@ -1,5 +1,6 @@
 package com.bazaar.service;
 
+import com.bazaar.DTO.ProdutoDTO;
 import com.bazaar.exception.EntidadeNaoEncontradaException;
 import com.bazaar.entity.Produto;
 import com.bazaar.repository.InteracaoRepository;
@@ -18,6 +19,7 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    @Transactional(readOnly = true)
     public List<Produto> recuperarProdutos() {
 
         List<Produto> produtos = produtoRepository.recuperarProdutosComCategoria();
@@ -70,12 +72,18 @@ public class ProdutoService {
 //        produtoRepository.deleteById(2L);
     }
 
-    public Produto recuperarProdutoPorId(long id) {
-        return produtoRepository.findById(id)
+    @Transactional(readOnly = true)
+    public ProdutoDTO recuperarProdutoPorId(long id) {
+
+        Produto produto = produtoRepository.findById(id)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException(
                         "Produto número " + id + " não encontrado."));
+
+        return new ProdutoDTO(produto);
+
     }
 
+    @Transactional(readOnly = true)
     public Page<Produto> recuperarProdutosComPaginacao(Pageable pageable, String nome) {
         return produtoRepository.recuperarProdutosComPaginacao(pageable, "%" + nome + "%");
     }

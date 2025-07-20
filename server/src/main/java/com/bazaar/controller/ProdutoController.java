@@ -1,6 +1,7 @@
 package com.bazaar.controller;
 
 import com.bazaar.DTO.FavoritoDTO;
+import com.bazaar.DTO.ProdutoDTO;
 import com.bazaar.entity.Interacao;
 import com.bazaar.entity.Produto;
 import com.bazaar.entity.ResultadoPaginado;
@@ -42,8 +43,9 @@ public class ProdutoController {
 
     // Requisição do tipo GET para http://localhost:8080/produtos/id
     @GetMapping("{idProduto}")
-    public Produto recuperarProdutoPorId(@PathVariable("idProduto") long id) {
-        return produtoService.recuperarProdutoPorId(id);
+    public ResponseEntity<ProdutoDTO> recuperarProdutoPorId(@PathVariable("idProduto") long id) {
+        ProdutoDTO dto = produtoService.recuperarProdutoPorId(id);
+        return ResponseEntity.ok(dto);
     }
 
     // Requisição do tipo GET para http://localhost:8080/produtos/categoria/frutas
