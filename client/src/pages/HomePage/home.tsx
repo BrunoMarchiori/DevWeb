@@ -1,20 +1,11 @@
 import { useEffect, useState } from "react";
 import CustomSlider from "../../components/Slider/slider";
 import styles from "./home.module.css";
+import { Categoria } from "../../interfaces/interfaces";
 
-interface Produto {
-  id: number;
-  nome: string;
-  preco: number;
-  imagem: string;
-  categoria: string;
-}
 
-interface Categoria {
-  id: number;
-  nome: string;
-  produtos: Produto[];
-}
+
+
 
 const HomePage: React.FC = () => {
   const [categorias, setCategorias] = useState<Categoria[]>([]);

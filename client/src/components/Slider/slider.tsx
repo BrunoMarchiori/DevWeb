@@ -3,14 +3,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "../ProductCard/product-card";
+import { Produto } from "../../interfaces/interfaces";
 
-interface Produto {
-  id: number;
-  nome: string;
-  preco: number;
-  imagem: string;
-  categoria: string;
-}
+
 
 interface CustomSliderProps {
   produtos: Produto[];
