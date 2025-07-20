@@ -12,7 +12,7 @@ const ProductDetails: React.FC = () => {
 
   const { id } = useParams<{ id: string }>();
 
-  // 2. Usar o useQuery para buscar o produto.
+  
   const { 
     data: produto, 
     error, 

@@ -1,0 +1,273 @@
+.card {
+    height: 20rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 1rem;
+    position: relative;
+}
+
+.produtoImage > img {
+    width: 200px;
+    height: 290px;
+    box-shadow: 16px 16px 16px 0px #00000040;
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.about > div > h4 {
+    font-family: var(--primary-Font);
+    font-weight: 700;
+    font-size: 25px;
+    color: #274553;
+    text-transform: uppercase;
+}
+
+.about > div > p {
+    font-family: var(--primary-Font);
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 4%;
+    color: #3E677A;
+}
+
+.about > button {
+    width: 50px;
+    height: 51.5px;
+    border-radius: 1px;
+    border: none;
+    background-color: #3E677A;
+    
+    font-family: var(--primary-Font);
+    font-weight: 400;
+    font-size: 20px;
+    color: #FCF7F8;
+    text-align: center;
+
+    cursor: auto;
+}
+
+.priceContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+    width: 100%;
+    margin-top: auto;
+}
+
+.priceContainer > p {
+    font-family: var(--primary-Font);
+    font-weight: 700;
+    font-size: 2rem;
+    color: #171717;
+    align-items: center;
+    margin-top: 4.5rem;
+}
+
+.precoComDesconto {
+    margin-top: 3.7rem;
+}
+
+.precoAntigo {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-decoration: line-through;
+    color: #B82935;
+    display: flex;
+    align-items: center;
+}
+
+.precoDesconto {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-top: auto;
+}
+
+.quantidadeContainer {
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 2rem 0;
+}
+
+.quantidadeContainer > h4 {
+    font-family: var(--primary-Font);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.quantidadeContainer > p {
+    font-family: var(--primary-Font);
+    font-weight: 400;
+    font-size: .8125rem;
+}
+.quantidadeContainer > p span {
+    font-weight: 800;
+    font-style: italic;
+}
+
+.quantidadeBotao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #F5F8FF;
+    border: 1px solid #3E677A;
+    border-radius: 2px;
+}
+
+.quantidadeBotao > button {
+    width: 100%;
+    border: none;
+    background-color: #F5F8FF;
+    height: 2.5625rem;
+
+    font-family: var(--primary-Font);
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #000000;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.quantidadeBotao > button > img {
+    width: 20px;
+    height: 21px;
+}
+
+.quantidadeBotao span {
+    font-family: var(--primary-Font);
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.diminuirBotao {
+    justify-content: flex-start;
+    margin: 0 1rem;
+}
+.aumentarBotao {
+    justify-content: flex-end;
+    margin: 0 1rem;
+}
+
+.removeContainer {
+    width: 4rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.removeContainer > button {
+    border: none;
+    background: none;
+}
+.removeContainer > button > img {
+    width: 64px;
+    height: 64px;
+}
+
+@media (max-width: 1100px) {
+    .card {
+        align-items: center;
+        height: auto;
+    }
+    .produtoImage > img {
+        width: 180px;
+        height: auto;
+    }
+    .about > div > h4 {
+        font-size: 1.4rem;
+    }
+    .about > div > p {
+        font-size: 0.9rem;
+    }
+    .priceContainer {
+        gap: .8rem;
+    }
+    .priceContainer > p {
+        font-size: 1.6rem;
+        margin-top: 1.5rem;
+    }
+    .precoDesconto {
+        font-size: 1.6rem;
+    }
+    .quantidadeContainer {
+        max-width: 9rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+    .produtoImage > img {
+        width: 150px;
+    }
+    .about {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .about > div > h4 {
+        font-size: 1.2rem;
+    }
+    .about > div > p {
+        font-size: 0.85rem;
+    }
+    .priceContainer > p {
+        font-size: 1.4rem;
+    }
+    .precoDesconto {
+        font-size: 1.4rem;
+    }
+    .quantidadeContainer {
+        max-width: 8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .produtoImage > img {
+        width: 120px;
+    }
+    .about > div > h4 {
+        font-size: 1rem;
+    }
+    .about > div > p {
+        font-size: 0.75rem;
+    }
+    .priceContainer > p {
+        font-size: 1.25rem;
+    }
+    .precoDesconto {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .about {
+        flex-direction: column;
+        gap: .8rem;
+        align-items: center;
+    }
+}
+

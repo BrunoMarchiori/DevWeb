@@ -6,6 +6,8 @@ interface Produto {
     categoria: string;
     descricao?: string;
     qtdEstoque?: number;
+    disponivel?: boolean;
+    quantidade?: number;
 }
 
 interface Categoria {
