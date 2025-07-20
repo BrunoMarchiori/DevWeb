@@ -2,7 +2,7 @@
     position: absolute;
     top: 70%;
     left: 50%;
-    transform: translate(-50%, -150%);
+    transform: translate(-50%, -100%);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -14,3 +14,106 @@
     padding: 50px;
 }
 
+/*
+  CSS para o seu arquivo de modules (ex: login.module.css)
+  Funciona em conjunto com as classes do Bootstrap.
+*/
+
+/* O container que agrupa o input e o botão */
+.passwordWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* O Bootstrap já estiliza o .form-control.
+   Aqui, nós apenas o *modificamos* para adicionar o espaço para o ícone.
+   Como este CSS é de um module, ele terá prioridade sobre o Bootstrap para a propriedade 'padding-right'.
+*/
+.passwordWrapper .form-control {
+    padding-right: 40px !important; /* Adiciona espaço à direita DENTRO do input */
+}
+
+/* Botão de mostrar/esconder senha */
+.showPasswordButton {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+}
+
+/* Link "Esqueci minha senha" */
+.senha_btn {
+    display: block;
+    text-align: right;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.senha_btn:hover {
+    text-decoration: underline;
+}
+
+/*
+  Adicione este código ao seu arquivo de CSS Modules.
+*/
+
+/* O novo container para os botões */
+.actionButtons {
+  display: flex; /* Alinha os botões lado a lado */
+  gap: 10px; /* Cria uma margem de 10px ENTRE os botões */
+  margin-top: 20px; /* Espaço acima dos botões */
+}
+
+/* Faz com que ambos os botões ocupem o espaço disponível igualmente */
+.actionButtons > .btn {
+  flex: 1; 
+}
+
+.input_log::placeholder{
+   font-family: 'Roboto';
+   font-size: 20px;
+
+}
+
+.errorMessage {
+    color: white;
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: inline-block;
+}
+  
+.entrar_btn_dis,  .cadastrar_btn_dis{
+
+    color: white;
+    background-color: #e67982;
+    padding: 4px 16px 4px 16px;
+    font-weight: 500;
+    font-size: 24px;
+    box-shadow: 0 5px 6px #00000040;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--quaternary-Font);
+    cursor: not-allowed;
+    
+  }
+
+
+.showPasswordButton {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    color: #007bff;
+}
