@@ -58,6 +58,7 @@ const HomePage: React.FC = () => {
       )}
       
       <div className={styles.sliderDiv}>
+        
         {categorias.map((categoria) => (
           <div key={categoria.id} className={styles.categorySection}>
             <span className={styles.categoryTitle}>{categoria.nome}</span>
@@ -65,6 +66,7 @@ const HomePage: React.FC = () => {
               produtos={categoria.produtos}
               onProductsChange={handleProductsChange}
               onEditProduct={handleEditProduct}
+              seeAllLink={categoria.nome}
             />
           </div>
         ))}

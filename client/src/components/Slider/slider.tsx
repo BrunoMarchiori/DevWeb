@@ -6,14 +6,15 @@ import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "../ProductCard/product-card";
 import { Produto } from "../../interfaces/interfaces";
 import { useUser } from "../../contexts/UserContext";
-
+import s from './slider.module.css'
 interface CustomSliderProps {
   produtos: Produto[];
   onProductsChange?: () => void;
   onEditProduct?: (product: any) => void;
+  seeAllLink?: string; // Link para ver todos os produtos da categoria
 }
 
-const CustomSlider: React.FC<CustomSliderProps> = ({ produtos, onProductsChange, onEditProduct }) => {
+const CustomSlider: React.FC<CustomSliderProps> = ({ produtos, onProductsChange, onEditProduct, seeAllLink }) => {
   const { usuario } = useUser();
   
   const settings = {
@@ -71,6 +72,16 @@ const CustomSlider: React.FC<CustomSliderProps> = ({ produtos, onProductsChange,
   };
 
   return (
+    
+     <div className="slider-wrapper">
+      {/* 4. Adicione um cabeçalho com o título e o botão "Ver todos" */}
+      <div className={s.sliderheader}>
+        <h2 className="slider-title">{''}</h2>
+        <Link to={`/produtoCategoria/${seeAllLink}`} className={s.seealllink}>
+          Ver todos
+        </Link>
+      </div>
+    
     <Slider {...settings}>
       {produtos.map((produto) => (
         <div key={produto.id} style={{ padding: "0 10px" }}>
@@ -86,6 +97,7 @@ const CustomSlider: React.FC<CustomSliderProps> = ({ produtos, onProductsChange,
         </div>
       ))}
     </Slider>
+  </div>
   );
 };
 
