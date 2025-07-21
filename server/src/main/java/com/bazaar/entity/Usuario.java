@@ -17,7 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "favoriteProducts")
 @Entity
 @Table(name = "usuario")
 @JsonIdentityInfo(
