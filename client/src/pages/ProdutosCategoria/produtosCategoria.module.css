@@ -1,0 +1,67 @@
+/* Container principal da página */
+.verTodosPageContainer {
+  max-width: 1200px;
+  margin: 0 auto; /* Centraliza o container na tela */
+  padding: 2rem 1.5rem; /* Espaçamento interno */
+}
+
+/* Cabeçalho da página (breadcrumb e título) */
+.pageHeader {
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 1.5rem;
+}
+
+/* Estilo para o link "Voltar para a Home" como um botão */
+.breadcrumb {
+  /* Estilos do botão */
+  display: inline-block; /* Permite definir padding e outras propriedades de bloco */
+  background-color: #6c757d; /* Um cinza neutro para não competir com outras ações */
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  
+  /* Estilos do texto */
+  color: white; /* Texto em branco */
+  text-decoration: none; /* Remove o sublinhado */
+  font-size: 0.9rem;
+  font-weight: 500;
+  
+  /* Efeitos e posicionamento */
+  margin-bottom: 1.5rem; /* Aumentei a margem para dar mais respiro ao título */
+  transition: background-color 0.2s, transform 0.1s;
+  cursor: pointer;
+}
+
+.breadcrumb:hover {
+  background-color: #5a6268; /* Um tom de cinza mais escuro no hover */
+  color: white; /* Garante que a cor do texto não mude */
+  transform: scale(1.02); /* Efeito de leve crescimento */
+}
+
+.pageTitle {
+  font-family: 'Numans', 'Nunito Sans', sans-serif; /* Usando as fontes do seu tema */
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #274553; /* Cor escura e azulada do seu tema */
+  margin: 0;
+}
+
+/* Estilo para o grid de cards (reutilizado do slider) */
+.cardsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem; /* Espaçamento consistente entre os cards */
+  justify-content: center; /* Centraliza os cards */
+}
+
+/* Estilo para mensagens de feedback (loading, erro, nenhum produto) */
+.feedbackState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.2rem;
+  color: #6c757d;
+  font-style: italic;
+}

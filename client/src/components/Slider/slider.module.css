@@ -1,0 +1,32 @@
+/* Estilo para o botão/link "Ver todos" */
+.seealllink {
+  /* Estilos do botão */
+  background-color: #007bff; /* Cor de fundo azul para o texto branco ser visível */
+  padding: 8px 16px; /* Aumentei um pouco o padding para ficar mais proporcional */
+  border-radius: 20px;
+  border: none; /* Removido o 'border' que não é mais necessário */
+  
+  /* Estilos do texto (sua solicitação) */
+  color: white; /* 1. Deixa o texto em branco */
+  text-decoration: none; /* 2. Remove a linha do link */
+  font-size: 0.9rem;
+  font-weight: 500;
+  
+  /* Efeitos e posicionamento */
+  transition: background-color 0.2s, transform 0.1s;
+  cursor: pointer;
+}
+
+.seealllink:hover {
+  background-color: #0056b3; /* Um tom de azul mais escuro no hover */
+  transform: scale(1.05); /* Efeito de leve crescimento */
+}
+
+/* O alinhamento à direita já é garantido pelo container pai */
+.sliderheader {
+  display: flex;
+  justify-content: space-between; /* <-- Esta linha já joga o link para a direita */
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 10px;
+}

@@ -43,7 +43,7 @@ const HomePage: React.FC = () => {
         {categorias.map((categoria) => (
           <div key={categoria.id} className={styles.categorySection}>
             <span className={styles.categoryTitle}>{categoria.nome}</span>
-            <CustomSlider produtos={categoria.produtos} />
+            <CustomSlider produtos={categoria.produtos} seeAllLink={categoria.nome}/>
           </div>
         ))}
       </div>
