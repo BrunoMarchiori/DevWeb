@@ -44,13 +44,7 @@ public class UsuarioService {
         Usuario usuarioSalvo = usuarioRepository.save(usuario);
 
         // Retornar resposta sem a senha
-        return new UsuarioResponseDTO(
-            usuarioSalvo.getId(),
-            usuarioSalvo.getNome(),
-            usuarioSalvo.getEndereco(),
-            usuarioSalvo.getTelefone(),
-            usuarioSalvo.getEmail()
-        );
+        return new UsuarioResponseDTO(usuarioSalvo);
     }
 
     public boolean emailJaExiste(String email) {
