@@ -125,7 +125,7 @@
     height: 93px;
     border-radius: 10px;
     border: none;
-    background-color: #A31621;
+    background-color: #87ceeb;
     box-shadow: 0px 5px 6px 0px #00000040;
     
     color: #FFF;
@@ -134,6 +134,7 @@
     font-size: 2rem;
 
     margin-top: 4rem;
+    margin-bottom: 4rem;
     cursor: pointer;
 }
 
