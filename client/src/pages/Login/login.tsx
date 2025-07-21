@@ -34,7 +34,8 @@ export default function login() {
             await api.post('autenticacao/login', obj)
             .then((resp) => {
                 console.log(resp.data)
-
+                    const userId = resp.data.token; 
+                    localStorage.setItem('userId', userId);
                 if(resp.status == 200){
                     nav('/')
                 }
