@@ -16,5 +16,11 @@ interface Categoria {
     produtos: Produto[];
 }
 
+interface FavoriteItem {
+    id: number; // Geralmente o ID do produto é um número
+    nome: string;
+    preco: number;
+}
 
-export type { Produto, Categoria };
+
+export type { Produto, Categoria, FavoriteItem };
