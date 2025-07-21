@@ -10,6 +10,7 @@
   overflow: hidden;
   margin: 5px 5px 5px 5px;
   box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+  position: relative;
 }
 .card:hover{
   background-color: rgb(175, 175, 175);
@@ -46,4 +47,53 @@
   font-size: 1rem;
   color: #555;
   margin-bottom: 10px;
+}
+
+.adminActions {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  gap: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .adminActions {
+  opacity: 1;
+}
+
+.editButton,
+.deleteButton {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.editButton {
+  background: #ffc107;
+  color: #212529;
+}
+
+.editButton:hover {
+  background: #e0a800;
+  transform: scale(1.1);
+}
+
+.deleteButton {
+  background: #dc3545;
+  color: white;
+}
+
+.deleteButton:hover {
+  background: #c82333;
+  transform: scale(1.1);
 }

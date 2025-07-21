@@ -4,14 +4,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "../ProductCard/product-card";
 import { Produto } from "../../interfaces/interfaces";
-
-
+import { useUser } from "../../contexts/UserContext";
 
 interface CustomSliderProps {
   produtos: Produto[];
+  onProductsChange?: () => void;
+  onEditProduct?: (product: any) => void;
 }
 
-const CustomSlider: React.FC<CustomSliderProps> = ({ produtos }) => {
+const CustomSlider: React.FC<CustomSliderProps> = ({ produtos, onProductsChange, onEditProduct }) => {
+  const { usuario } = useUser();
+  
   const settings = {
     dots: false,
     infinite: true,
@@ -40,6 +43,31 @@ const CustomSlider: React.FC<CustomSliderProps> = ({ produtos }) => {
     ],
   };
 
+  const handleEdit = (product: any) => {
+    if (onEditProduct) {
+      onEditProduct(product);
+    }
+  };
+
+  const handleDelete = async (productId: string) => {
+    if (!usuario?.id) return;
+    
+    try {
+      const response = await fetch(`http://localhost:8080/produtos/${productId}?usuarioId=${usuario.id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok && onProductsChange) {
+        onProductsChange();
+      } else {
+        alert('Erro ao deletar produto');
+      }
+    } catch (error) {
+      console.error('Erro ao deletar produto:', error);
+      alert('Erro ao deletar produto');
+    }
+  };
+
   return (
     <Slider {...settings}>
       {produtos.map((produto) => (
@@ -50,6 +78,8 @@ const CustomSlider: React.FC<CustomSliderProps> = ({ produtos }) => {
             imageUrl={`http://localhost:8080/api/imagens/${produto.id}`}
             price={produto.preco}
             nome={produto.nome}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
           />
         </div>
       ))}

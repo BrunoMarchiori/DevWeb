@@ -1,5 +1,6 @@
 package com.bazaar.entity;
 
+import com.bazaar.enums.TipoUsuario;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -48,6 +49,10 @@ public class Usuario {
     @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres.")
     private String senha;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "empresa_colaboradora_id", nullable = true)
+    private Empresa empresaColaboradora;
+
     @ManyToMany
     @JoinTable(
             name = "favorites",
@@ -63,5 +68,40 @@ public class Usuario {
         this.telefone = telefone;
         this.email = email;
         this.senha = senha;
+    }
+
+    public Usuario(String nome, String endereco, long telefone, String email, String senha, Empresa empresaColaboradora) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.email = email;
+        this.senha = senha;
+        this.empresaColaboradora = empresaColaboradora;
+    }
+
+    /**
+     * Método para obter o tipo de usuário dinamicamente baseado na empresa
+     */
+    public TipoUsuario getTipo() {
+        return empresaColaboradora != null ? TipoUsuario.GESTOR_EMPRESARIAL : TipoUsuario.CLIENTE;
+    }
+
+    /**
+     * Métodos de conveniência para verificar permissões
+     */
+    public boolean podeGerenciarProdutos() {
+        return getTipo().podeGerenciarProdutos();
+    }
+
+    public boolean podeFazerCompras() {
+        return getTipo().podeFazerCompras();
+    }
+
+    public boolean podeUsarCarrinho() {
+        return getTipo().podeUsarCarrinho();
+    }
+
+    public boolean podeUsarFavoritos() {
+        return getTipo().podeUsarFavoritos();
     }
 }

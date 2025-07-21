@@ -1,4 +1,4 @@
-package com.bazaar.DTO;
+package com.bazaar.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -28,4 +28,7 @@ public class UsuarioRegistroDTO {
     
     @NotEmpty(message = "A confirmação de senha deve ser informada.")
     private String confirmaSenha;
+    
+    // Campo opcional para empresa - se preenchido, o usuário será Gestor Empresarial
+    private Long empresaId;
 }

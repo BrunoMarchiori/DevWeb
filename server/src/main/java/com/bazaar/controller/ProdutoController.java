@@ -1,13 +1,16 @@
 package com.bazaar.controller;
 
-import com.bazaar.DTO.FavoritoDTO;
-import com.bazaar.DTO.ProdutoDTO;
+import com.bazaar.dto.FavoritoDTO;
+import com.bazaar.dto.ProdutoDTO;
 import com.bazaar.entity.Interacao;
 import com.bazaar.entity.Produto;
 import com.bazaar.entity.ResultadoPaginado;
+import com.bazaar.entity.Usuario;
+import com.bazaar.service.AuthorizationService;
 import com.bazaar.service.FavoritoService;
 import com.bazaar.service.InteracaoService;
 import com.bazaar.service.ProdutoService;
+import com.bazaar.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,6 +36,12 @@ public class ProdutoController {
     @Autowired
     private InteracaoService interacaoService;
 
+    @Autowired
+    private AuthorizationService authorizationService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
     @GetMapping   // Requisição do tipo GET para http://localhost:8080/produtos
     public List<Produto> recuperarProdutos() {
 //        if (true) {
@@ -56,7 +65,10 @@ public class ProdutoController {
 
     // Requisição do tipo POST para http://localhost:8080/produtos
     @PostMapping
-    public Produto cadastraProduto(@RequestBody Produto produto) {
+    public Produto cadastraProduto(@RequestBody Produto produto, @RequestParam Long usuarioId) {
+        // Validar se o usuário tem permissão para gerenciar produtos
+        Usuario usuario = usuarioService.buscarPorId(usuarioId);
+        authorizationService.validarGerenciamentoProdutos(usuario);
 
         produto.setDataCadastro(LocalDate.now());
         produto.setDisponivel(true);
@@ -68,12 +80,20 @@ public class ProdutoController {
     }
 
     @PutMapping
-    public Produto alterarProduto(@RequestBody Produto produto) {
+    public Produto alterarProduto(@RequestBody Produto produto, @RequestParam Long usuarioId) {
+        // Validar se o usuário tem permissão para gerenciar produtos
+        Usuario usuario = usuarioService.buscarPorId(usuarioId);
+        authorizationService.validarGerenciamentoProdutos(usuario);
+        
         return produtoService.alterarProduto(produto);
     }
 
     @DeleteMapping  ("{idProduto}")   // http://localhost:8080/produtos/1
-    public void removerProduto(@PathVariable("idProduto") long id) {
+    public void removerProduto(@PathVariable("idProduto") long id, @RequestParam Long usuarioId) {
+        // Validar se o usuário tem permissão para gerenciar produtos
+        Usuario usuario = usuarioService.buscarPorId(usuarioId);
+        authorizationService.validarGerenciamentoProdutos(usuario);
+        
         produtoService.removerProduto(id);
     }
 

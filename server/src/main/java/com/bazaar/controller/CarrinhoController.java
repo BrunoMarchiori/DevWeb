@@ -1,7 +1,7 @@
 package com.bazaar.controller;
 
-import com.bazaar.DTO.AdicionarItemCarrinhoDTO;
-import com.bazaar.DTO.CarrinhoDTO;
+import com.bazaar.dto.AdicionarItemCarrinhoDTO;
+import com.bazaar.dto.CarrinhoDTO;
 import com.bazaar.service.CarrinhoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

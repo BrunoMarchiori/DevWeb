@@ -1,10 +1,12 @@
 package com.bazaar.service;
 
-import com.bazaar.DTO.UsuarioRegistroDTO;
-import com.bazaar.DTO.UsuarioResponseDTO;
+import com.bazaar.dto.UsuarioRegistroDTO;
+import com.bazaar.dto.UsuarioResponseDTO;
+import com.bazaar.entity.Empresa;
 import com.bazaar.entity.Usuario;
 import com.bazaar.exception.EmailJaExisteException;
 import com.bazaar.exception.SenhasNaoCoincidentesException;
+import com.bazaar.repository.EmpresaRepository;
 import com.bazaar.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private EmpresaRepository empresaRepository;
 
     public UsuarioResponseDTO registrarUsuario(UsuarioRegistroDTO registroDTO) {
         // Validar se as senhas coincidem
@@ -36,6 +41,14 @@ public class UsuarioService {
         usuario.setTelefone(registroDTO.getTelefone());
         usuario.setEmail(registroDTO.getEmail());
         
+        // Se empresa foi fornecida, definir empresa colaboradora
+        if (registroDTO.getEmpresaId() != null) {
+            Empresa empresaColaboradora = empresaRepository.findById(registroDTO.getEmpresaId())
+                    .orElseThrow(() -> new RuntimeException("Empresa não encontrada com ID: " + registroDTO.getEmpresaId()));
+            
+            usuario.setEmpresaColaboradora(empresaColaboradora);
+        }
+        
         // Criptografar a senha usando SHA-256 por simplicidade
         String senhaCriptografada = criptografarSenha(registroDTO.getSenha());
         usuario.setSenha(senhaCriptografada);
@@ -49,6 +62,11 @@ public class UsuarioService {
 
     public boolean emailJaExiste(String email) {
         return usuarioRepository.existsByEmail(email);
+    }
+
+    public Usuario buscarPorId(Long id) {
+        return usuarioRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + id));
     }
 
     public String criptografarSenha(String senha) {

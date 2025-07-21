@@ -1,6 +1,6 @@
 package com.bazaar.service;
 
-import com.bazaar.DTO.ProdutoDTO;
+import com.bazaar.dto.ProdutoDTO;
 import com.bazaar.exception.EntidadeNaoEncontradaException;
 import com.bazaar.entity.Produto;
 import com.bazaar.repository.InteracaoRepository;
