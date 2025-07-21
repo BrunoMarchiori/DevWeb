@@ -57,7 +57,7 @@ public class UsuarioService {
         return usuarioRepository.existsByEmail(email);
     }
 
-    private String criptografarSenha(String senha) {
+    public String criptografarSenha(String senha) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(senha.getBytes());

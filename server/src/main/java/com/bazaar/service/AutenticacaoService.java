@@ -15,10 +15,16 @@ public class AutenticacaoService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     public Usuario login(Usuario usuario) {
         // System.out.println("Conta = " + usuario.getConta() + " e senha = " + usuario.getSenha());
+
+        String senhaCriptografada = usuarioService.criptografarSenha(usuario.getSenha());
+
         Usuario user =  usuarioRepository.findByEmailAndSenha(
-                usuario.getEmail(), usuario.getSenha());
+                usuario.getEmail(), senhaCriptografada);
 
         if (user == null){
             throw  new EntidadeNaoEncontradaException("Usuario não encontrado");
