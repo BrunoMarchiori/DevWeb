@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/bazaar.png"; // Importando a imagem do logo
 import styles from "./header.module.css";
 import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
 
+    const [userId, setUserId] = useState<number | null>(null);
+      
+    useEffect(() => {
+          const storedUserId = localStorage.getItem('userId');
+          if (storedUserId) {
+              setUserId(parseInt(storedUserId, 10));
+          }
+      }, []);
+
   const navigate = useNavigate();
 
   const handleClickLogin = () => {
-    navigate(`/login`); 
+    
+    if(userId) {
+      localStorage.removeItem('userId');
+      setUserId(null);
+      window.location.reload(); // Recarrega a página para refletir o logout
+      navigate('/'); // Redireciona para a página inicial após o logout
+    }
+    else {
+      navigate(`/login`);
+      
+    }
+    
+    
+     
   };
 
   return (
@@ -38,7 +60,7 @@ const Header: React.FC = () => {
           <button className="btn btn-light me-2" onClick={() => navigate(`/carrinho`)}>
             <i className="bi bi-cart-check"></i> Carrinho
           </button>
-          <button className="btn btn-outline-light" onClick={handleClickLogin}>Login</button>
+          <button className="btn btn-outline-light" onClick={handleClickLogin}>{userId ? 'Logout' : 'Login'}</button>
           
         </div>
       </div>
