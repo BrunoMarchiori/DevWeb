@@ -2,12 +2,14 @@ package com.bazaar.service;
 
 
 
+import com.bazaar.DTO.UsuarioResponseDTO;
 import com.bazaar.entity.Produto;
 import com.bazaar.entity.Usuario;
 import com.bazaar.exception.EntidadeNaoEncontradaException;
 import com.bazaar.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AutenticacaoService {
@@ -38,10 +40,14 @@ public class AutenticacaoService {
         return usuarioRepository.save(usuario);
     }
 
+    @Transactional(readOnly = true)
+    public UsuarioResponseDTO recuperarUsuarioPorId(long id) {
 
-    public Usuario recuperarUsuarioPorId(long id) {
-        return usuarioRepository.findById(id)
+        Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException(
                         "Usuario número " + id + " não encontrado."));
+
+
+        return new UsuarioResponseDTO(usuario);
     }
 }
