@@ -5,14 +5,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "../ProductCard/product-card";
 import { Produto } from "../../interfaces/interfaces";
-import s from "./slider.module.css"; // 👈 2. Importe um arquivo CSS para os novos estilos
+import { useUser } from "../../contexts/UserContext";
 
 interface CustomSliderProps {
   produtos: Produto[];
-  seeAllLink: string;
+  onProductsChange?: () => void;
+  onEditProduct?: (product: any) => void;
 }
 
-const CustomSlider: React.FC<CustomSliderProps> = ({ produtos, seeAllLink }) => {
+const CustomSlider: React.FC<CustomSliderProps> = ({ produtos, onProductsChange, onEditProduct }) => {
+  const { usuario } = useUser();
+  
   const settings = {
     dots: false,
     infinite: produtos.length > 5, // Só permite infinito se houver mais slides que o visível
@@ -42,37 +45,47 @@ const CustomSlider: React.FC<CustomSliderProps> = ({ produtos, seeAllLink }) => 
     ],
   };
 
-  // Não renderiza o slider se não houver produtos
-  if (!produtos || produtos.length === 0) {
-    return null;
-  }
+  const handleEdit = (product: any) => {
+    if (onEditProduct) {
+      onEditProduct(product);
+    }
+  };
+
+  const handleDelete = async (productId: string) => {
+    if (!usuario?.id) return;
+    
+    try {
+      const response = await fetch(`http://localhost:8080/produtos/${productId}?usuarioId=${usuario.id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok && onProductsChange) {
+        onProductsChange();
+      } else {
+        alert('Erro ao deletar produto');
+      }
+    } catch (error) {
+      console.error('Erro ao deletar produto:', error);
+      alert('Erro ao deletar produto');
+    }
+  };
 
   return (
-    // 3. Crie um container geral para o título e o slider
-    <div className={s.sliderwrapper}>
-      {/* 4. Adicione um cabeçalho com o título e o botão "Ver todos" */}
-      <div className={s.sliderheader}>
-        <h2 className={s.slidertitle}>{''}</h2>
-        <Link to={`/produtoCategoria/${seeAllLink}`} className={s.seealllink}>
-          Ver todos
-        </Link>
-      </div>
-
-      {/* 5. Mantenha seu componente Slider como estava */}
-      <Slider {...settings}>
-        {produtos.map((produto) => (
-          <div key={produto.id} style={{ padding: "0 10px" }}>
-            <ProductCard 
-              id={produto.id.toString()} 
-              category={produto.categoria} 
-              imageUrl={`http://localhost:8080/api/imagens/${produto.id}`}
-              price={produto.preco}
-              nome={produto.nome}
-            />
-          </div>
-        ))}
-      </Slider>
-    </div>
+    <Slider {...settings}>
+      {produtos.map((produto) => (
+        <div key={produto.id} style={{ padding: "0 10px" }}>
+          <ProductCard 
+            id={produto.id.toString()} 
+            category={produto.categoria} 
+            imageUrl={`http://localhost:8080/api/imagens/${produto.id}`}
+            price={produto.preco}
+            nome={produto.nome}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+          />
+        </div>
+      ))}
+    </Slider>
   );
 };
 

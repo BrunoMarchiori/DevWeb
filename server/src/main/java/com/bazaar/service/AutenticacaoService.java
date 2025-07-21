@@ -2,7 +2,7 @@ package com.bazaar.service;
 
 
 
-import com.bazaar.DTO.UsuarioResponseDTO;
+import com.bazaar.dto.UsuarioResponseDTO;
 import com.bazaar.entity.Produto;
 import com.bazaar.entity.Usuario;
 import com.bazaar.exception.EntidadeNaoEncontradaException;

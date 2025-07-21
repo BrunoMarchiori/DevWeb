@@ -1,7 +1,7 @@
 package com.bazaar.service;
 
 
-import com.bazaar.DTO.FavoritoDTO;
+import com.bazaar.dto.FavoritoDTO;
 import com.bazaar.entity.Produto;
 import com.bazaar.entity.Usuario;
 import com.bazaar.exception.EntidadeNaoEncontradaException;

@@ -56,6 +56,13 @@
   margin-top: 0.25rem;
 }
 
+.help-text {
+  color: #6c757d;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
 .success-message {
   color: #28a745;
   font-size: 0.9rem;

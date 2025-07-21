@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usuarioSchema, type UsuarioFormData, type UsuarioRegistroData } from '../../schemas/usuarioSchema';
 import styles from './cadastro.module.css';
+
+interface Empresa {
+  id: number;
+  nome: string;
+}
 
 const Cadastro: React.FC = () => {
   const [formData, setFormData] = useState<UsuarioFormData>({
@@ -9,17 +14,39 @@ const Cadastro: React.FC = () => {
     telefone: '',
     email: '',
     senha: '',
-    confirmaSenha: ''
+    confirmaSenha: '',
+    empresaId: undefined
   });
 
+  const [empresas, setEmpresas] = useState<Empresa[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [generalError, setGeneralError] = useState('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Carregar lista de empresas
+  useEffect(() => {
+    const carregarEmpresas = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/empresas');
+        if (response.ok) {
+          const empresasData = await response.json();
+          setEmpresas(empresasData);
+        }
+      } catch (error) {
+        console.error('Erro ao carregar empresas:', error);
+      }
+    };
+    
+    carregarEmpresas();
+  }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: name === 'empresaId' ? (value === '' ? undefined : Number(value)) : value 
+    }));
     
     // Limpar erro do campo quando o usuário começar a digitar
     if (errors[name]) {
@@ -59,8 +86,13 @@ const Cadastro: React.FC = () => {
 
       // Enviar dados para o servidor
       const dataToSend: UsuarioRegistroData = {
-        ...validatedData,
-        telefone: parseInt(validatedData.telefone)
+        nome: validatedData.nome,
+        endereco: validatedData.endereco,
+        email: validatedData.email,
+        senha: validatedData.senha,
+        confirmaSenha: validatedData.confirmaSenha,
+        telefone: parseInt(validatedData.telefone),
+        empresaId: validatedData.empresaId
       };
 
       const response = await fetch('http://localhost:8080/api/usuario/registro', {
@@ -81,7 +113,8 @@ const Cadastro: React.FC = () => {
           telefone: '',
           email: '',
           senha: '',
-          confirmaSenha: ''
+          confirmaSenha: '',
+          empresaId: undefined
         });
       } else {
         if (result.errors) {
@@ -181,6 +214,28 @@ const Cadastro: React.FC = () => {
             placeholder="Digite seu email"
           />
           {errors.email && <span className={styles['error-message']}>{errors.email}</span>}
+        </div>
+
+        <div className={styles['form-group']}>
+          <label htmlFor="empresaId" className={styles['form-label']}>Empresa (opcional)</label>
+          <select
+            id="empresaId"
+            name="empresaId"
+            value={formData.empresaId || ''}
+            onChange={handleInputChange}
+            className={`${styles['form-input']} ${errors.empresaId ? styles.error : ''}`}
+          >
+            <option value="">Selecione uma empresa (se aplicável)</option>
+            {empresas.map((empresa) => (
+              <option key={empresa.id} value={empresa.id}>
+                {empresa.nome}
+              </option>
+            ))}
+          </select>
+          <div className={styles['help-text']}>
+            💼 Se você trabalha em uma empresa, selecione-a para se tornar um Gestor Empresarial
+          </div>
+          {errors.empresaId && <span className={styles['error-message']}>{errors.empresaId}</span>}
         </div>
 
         <div className={styles['form-group']}>

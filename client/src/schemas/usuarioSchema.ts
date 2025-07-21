@@ -29,7 +29,12 @@ export const usuarioSchema = z.object({
   
   confirmaSenha: z
     .string()
-    .nonempty('A confirmação de senha é obrigatória')
+    .nonempty('A confirmação de senha é obrigatória'),
+    
+  empresaId: z
+    .string()
+    .optional()
+    .transform((val) => val === '' ? undefined : val ? Number(val) : undefined)
 }).refine((data) => data.senha === data.confirmaSenha, {
   message: 'As senhas não coincidem',
   path: ['confirmaSenha'],
@@ -38,6 +43,7 @@ export const usuarioSchema = z.object({
 export type UsuarioFormData = z.infer<typeof usuarioSchema>;
 
 // Tipo para envio ao servidor (com telefone convertido para número)
-export type UsuarioRegistroData = Omit<UsuarioFormData, 'telefone'> & {
+export type UsuarioRegistroData = Omit<UsuarioFormData, 'telefone' | 'empresaId'> & {
   telefone: number;
+  empresaId?: number;
 };

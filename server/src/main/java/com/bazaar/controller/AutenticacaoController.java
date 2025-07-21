@@ -1,5 +1,5 @@
 package com.bazaar.controller;
-import com.bazaar.DTO.UsuarioResponseDTO;
+import com.bazaar.dto.UsuarioResponseDTO;
 import com.bazaar.entity.Interacao;
 import com.bazaar.entity.Produto;
 import com.bazaar.entity.Usuario;

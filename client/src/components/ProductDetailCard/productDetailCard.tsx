@@ -1,7 +1,7 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Produto } from "../../interfaces/interfaces";
 import useCartStore from "../../stores/CartStore";
-import styles from "./product-Detail-Card.module.css";
+import styles from "./product-detail-card.module.css";
 import subtract from '../../assets/Subtract.svg'
 import plus from '../../assets/Plus Math.svg'
 import favorite from '../../assets/empty-Heart.svg'

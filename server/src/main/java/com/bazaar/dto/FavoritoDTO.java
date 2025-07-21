@@ -1,4 +1,4 @@
-package com.bazaar.DTO;
+package com.bazaar.dto;
 
 import com.bazaar.entity.Produto;
 import lombok.AllArgsConstructor;
