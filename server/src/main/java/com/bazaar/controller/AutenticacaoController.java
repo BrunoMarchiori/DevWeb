@@ -1,10 +1,12 @@
 package com.bazaar.controller;
+import com.bazaar.DTO.UsuarioResponseDTO;
 import com.bazaar.entity.Interacao;
 import com.bazaar.entity.Produto;
 import com.bazaar.entity.Usuario;
 import com.bazaar.service.AutenticacaoService;
 import com.bazaar.util.TokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -30,15 +32,11 @@ public class AutenticacaoController {
 
     // Requisição do tipo GET para http://localhost:8080/autenticacao/id
     @GetMapping("{idUsuario}")
-    public Usuario recuperarUsuarioPorId(@PathVariable("idUsuario") long id) {
-        return autenticacaoService.recuperarUsuarioPorId(id);
+    public ResponseEntity<UsuarioResponseDTO> recuperarUsuarioPorId(@PathVariable("idUsuario") long id) {
+
+        UsuarioResponseDTO dto = autenticacaoService.recuperarUsuarioPorId(id);
+
+        return ResponseEntity.ok(dto);
     }
 
-    // Requisição do tipo POST para http://localhost:8080/autenticacao/cadastro
-    @PostMapping("cadastro")
-    public Usuario cadastro(@RequestBody Usuario usuario) {
-
-        //Pensar se precisa fazer validação dupla email
-        return autenticacaoService.cadastroUsuario(usuario);
-    }
 }
