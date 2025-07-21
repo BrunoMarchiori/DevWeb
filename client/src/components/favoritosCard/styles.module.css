@@ -1,0 +1,100 @@
+/* ============================================== */
+/* ========= ESTILOS DO CARD INDIVIDUAL ========= */
+/* ============================================== */
+
+/* Card Principal */
+.cardContainer {
+  width: 12.75rem;
+  height: 25rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: white; /* Adicionado para garantir um fundo sólido */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.cardContainer:hover {
+    transform: translateY(-5px);
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Ícones no topo */
+.iconsContainer {
+  position: absolute;
+  top: 8px;
+  right: 8px; /* Alinhado à direita para não interferir com a imagem */
+  z-index: 2; /* Garante que os ícones fiquem sobre a imagem */
+}
+
+.iconButton {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+}
+
+.iconButton img.favoriteIcon {
+  width: 32px;
+  height: 32px;
+  /* Adiciona um pequeno filtro de sombra para destacar o ícone sobre a imagem */
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.5));
+}
+
+/* Imagem */
+.imageContainer {
+  width: 100%;
+  height: 17rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #f0f0f0; /* Cor de fundo enquanto a imagem carrega */
+}
+
+.produtoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+}
+
+/* Retângulo de informações (azul) */
+.infoContainer {
+  /* O flex-grow faz este container ocupar todo o espaço restante do card */
+  flex-grow: 1; 
+  padding: 0.5rem;
+  background-color: #97C3D8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Nome do produto */
+.produtoName {
+  font-family: 'Numans', sans-serif;
+  font-size: 0.9rem; /* Levemente maior para legibilidade */
+  font-weight: 600; /* Um pouco mais de peso */
+  text-transform: uppercase;
+  color: #274553;
+  /* Limita o nome a 2 linhas e adiciona "..." se for maior */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
+  height: 2.2rem; /* Altura fixa para duas linhas de texto */
+}
+
+/* Preço atual */
+.currentPrice {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #274553;
+}
+
+/* Removi as classes não utilizadas para manter o código limpo */
