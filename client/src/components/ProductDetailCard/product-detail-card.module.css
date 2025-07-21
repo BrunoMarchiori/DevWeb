@@ -167,6 +167,62 @@
   text-align: center;
 }
 
+/* --- Estilo Base do Botão (Exemplo) --- */
+.FavoritarButton {
+  background-color: #007bff; /* Azul primário */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito ao passar o mouse por cima (hover) */
+.FavoritarButton:hover {
+  background-color: #0056b3; /* Azul mais escuro */
+}
+
+/* Efeito ao clicar */
+.FavoritarButton:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- ESTILO PARA O BOTÃO DESABILITADO --- */
+.FavoritarButton:disabled {
+  /* 1. Mude a cor de fundo para um tom neutro/cinza */
+  background-color: #e9ecef;
+
+  /* 2. Mude a cor do texto para indicar inatividade */
+  color: #adb5bd;
+
+  /* 3. Mude o cursor para "não permitido" - MUITO IMPORTANTE PARA UX! */
+  cursor: not-allowed;
+
+  /* 4. (Opcional) Adicione uma leve opacidade para "apagar" o botão */
+  opacity: 0.8;
+  
+  /* 5. (Opcional) Remova qualquer sombra para parecer "plano" e inativo */
+  box-shadow: none;
+  
+  /* 6. (Opcional) Mude a cor da borda, se houver */
+  border: 1px solid #ced4da;
+}
+
+/* 7. Garanta que o efeito de hover não se aplique ao botão desabilitado */
+.FavoritarButton:disabled:hover {
+    background-color: #e9ecef; /* Mantém a mesma cor de fundo desabilitada */
+    transform: none; /* Remove qualquer efeito de transformação */
+}
+
+
+
+
 /* -- Responsividade (Ajustada) -- */
 @media (max-width: 992px) {
   .productDetails > div:first-child {
