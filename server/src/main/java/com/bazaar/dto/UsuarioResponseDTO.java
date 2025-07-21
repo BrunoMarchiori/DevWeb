@@ -1,5 +1,6 @@
 package com.bazaar.DTO;
 
+import com.bazaar.entity.Usuario;
 import lombok.Data;
 
 @Data
@@ -10,11 +11,11 @@ public class UsuarioResponseDTO {
     private Long telefone;
     private String email;
     
-    public UsuarioResponseDTO(Long id, String nome, String endereco, Long telefone, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.email = email;
+    public UsuarioResponseDTO(Usuario usuario) {
+        this.id = usuario.getId();
+        this.nome = usuario.getNome();
+        this.endereco = usuario.getEndereco();
+        this.telefone = usuario.getTelefone();
+        this.email = usuario.getEmail();
     }
 }
